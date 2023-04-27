@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Table</title>
+</head>
+<style>
+  table {
+    direction: rtl;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+  }
+  td {
+    border: 1px solid #ddd;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #ddd;
+  }
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  button.edit {
+    background-color: #2196F3;
+  }
+  button.delete {
+    background-color: #f44336;
+  }
+  button.add {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+</style>
+<body>
+  <table id="fileTable">
+    <thead>
+      <tr>
+        <th>اسم الملف</th>
+        <th>حجم الملف</th>
+        <th>تاريخ الإنشاء</th>
+        <th>خيارات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ملف1.pdf</td>
+        <td>20 KB</td>
+        <td>01/01/2022</td>
+        <td>
+          <button onclick="editFile(this)">تعديل</button>
+          <button onclick="deleteFile(this)">حذف</button>
+        </td>
+      </tr>
+      <tr>
+        <td>ملف2.docx</td>
+        <td>50 KB</td>
+        <td>01/02/2022</td>
+        <td>
+          <button onclick="editFile(this)">تعديل</button>
+          <button onclick="deleteFile(this)">حذف</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <button onclick="addFile()">إضافة ملف</button>
+  
+  <script>
+  function addFile() {
+    // إنشاء صف جديد في الجدول
+    var table = document.getElementById("fileTable");
+    var row = table.insertRow(-1);
+  
+    // إضافة خلايا الصف
+    var nameCell = row.insertCell(0);
+    var sizeCell = row.insertCell(1);
+    var dateCell = row.insertCell(2);
+    var optionsCell = row.insertCell(3);
+  
+    // إضافة محتوى الخلايا
+    nameCell.innerHTML = "اسم الملف";
+    sizeCell.innerHTML = "حجم الملف";
+    dateCell.innerHTML = "تاريخ الإنشاء";
+    optionsCell.innerHTML = '<button onclick="editFile(this)">تعديل</button>' +
+                             '<button onclick="deleteFile(this)">حذف</button>';
+  }
+  
+  function editFile(button) {
+    // الحصول على صف الملف وتعديل قيم الخلايا
+    var row = button.parentNode.parentNode;
+    var nameCell = row.cells[0];
+    var sizeCell = row.cells[1];
+    var dateCell = row.cells[2];
+  
+    var newName = prompt("أدخل اسم الملف الجديد:", nameCell.innerHTML);
+    if (newName != null) {
+      nameCell.innerHTML = newName;
+    }
+  
+    var newSize = prompt("أدخل حجم الملف الجديد:", sizeCell.innerHTML);
+    if (newSize != null) {
+      sizeCell.innerHTML = newSize;
+    }
+  
+    var newDate = prompt("أدخل تاريخ الإنشاء الجديد:", dateCell.innerHTML);
+    if (newDate != null) {
+      dateCell.innerHTML = newDate;
+    }
+  }
+  
+  function deleteFile(button) {
+    // حذف صف الملف من الجدول
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>الملخصات</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        background-color: #f2f2f2;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+
+  <!-- تضمين Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
+
+<!-- تضمين مكتبة jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- تضمين DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
+<!-- تضمين DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<!-- تضمين DataTables Buttons CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+
+<!-- تضمين DataTables Buttons -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+
+
+</head>
+<body>
+
+<center>المواد الدراسية</center>
+
+
+  <table id="example" class="table table-striped" style="width:100%;height:350px; direction: rtl; padding:5px; margin-top:-200px; ">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>الملخص</th>
+            <th>المادة</th>
+            <th>التاريخ</th>
+            <th>تحميل</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>ملخص المحاضرة الاولي</td>
+            <td>محاسبة ادارية</td>
+            <td>2023-04-25</td>
+            <td><button onclick="downloadFile()">تحميل الملف</button></td> 
+        <tr>
+            <td>2</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>28</td>
+            <td>2011-06-07</td>
+            
+        </tr>
+        <tr>
+            <td>Fiona Green</td>
+            <td>Chief Operating Officer (COO)</td>
+            <td>San Francisco</td>
+            <td>48</td>
+            <td>2010-03-11</td>
+            
+        </tr>
+    
+        <tr>
+            <td>Michael Bruce</td>
+            <td>Javascript Developer</td>
+            <td>Singapore</td>
+            <td>29</td>
+            <td>2011-06-27</td>
+            
+        </tr>
+        <tr>
+            <td>Donna Snider</td>
+            <td>Customer Support</td>
+            <td>New York</td>
+            <td>27</td>
+            <td>2011-01-25</td>
+            
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+          <th>ID</th>
+          <th>الملخص</th>
+          <th>المادة</th>
+          <th>المهمة</th>
+          <th>التاريخ</th>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
+
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csv',
+                text: 'تحميل الملف',
+                className: 'btn btn-primary',
+                filename: 'اسم-الملف'
+            }
+        ]
+    } );
+  
+} );
+
+function downloadFile() {
+  if (confirm("هل أنت متأكد من أنك تريد تحميل هذا الملف؟")) {
+    var link = document.createElement("a");
+    link.target = 
+    link.href = "https://www.mediafire.com/file/irfp86wp33lrega/resume.pdf/file";
+    link.download = "resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    // window.history.back();
+  } else {
+    alert("لم يتم تحميل الملف");
+  }
+
+}
+
+
+ 
+
+
+</script>
+</body>
+</html>
